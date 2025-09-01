@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import React from 'react'
 
@@ -28,10 +29,10 @@ export default function Navbar() {
             className="fixed top-5 left-1/2 -translate-x-1/2 flex justify-center gap-5 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full w-fit z-50 shadow-md transition-all duration-300"
             style={{ opacity }}
         >
-            <a href="#" className="text-white font-medium px-4 py-2 rounded-full hover:bg-white/20 transition">Home</a>
-            <a href="#" className="text-white font-medium px-4 py-2 rounded-full hover:bg-black/20 transition">About</a>
+            <a href="/home" className="text-white font-medium px-4 py-2 rounded-full hover:bg-white/20 transition">Home</a>
+            <Link href="/about" className="text-white font-medium px-4 py-2 rounded-full hover:bg-black/20 transition">About</Link>
             <a href="#" className="text-white font-medium px-4 py-2 rounded-full hover:bg-white/20 transition">News</a>
-            <a href="#" className="bg-white text-black font-medium px-4 py-2 rounded-full transition">Contact</a>
+            <a href="#contact" className="bg-white text-black font-medium px-4 py-2 rounded-full transition">Contact</a>
         </nav>
     )
 }

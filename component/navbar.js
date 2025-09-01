@@ -1,17 +1,19 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import React from 'react'
+import { usePathname } from "next/navigation";
+import React from "react";
 
 export default function Navbar() {
-
     const [opacity, setOpacity] = useState(1);
+    const pathname = usePathname();
+    const isHome = pathname === "/" || pathname === "/home";
 
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
-            const fadeStart = 0;   // scroll 0px → opacity penuh
-            const fadeEnd = 300;   // scroll 300px → opacity 0
+            const fadeStart = 0;
+            const fadeEnd = 300;
 
             let newOpacity = 1 - (scrollTop - fadeStart) / (fadeEnd - fadeStart);
             if (newOpacity < 0) newOpacity = 0;
@@ -24,17 +26,45 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const textClass = isHome ? "text-white" : "text-white";
+    const hoverClass = isHome ? "hover:bg-white/20" : "hover:bg-black/10";
+    const contactClass = isHome ? "bg-white text-black" : "bg-black text-white";
+
     return (
         <nav
-            className="fixed top-5 left-1/2 -translate-x-1/2 flex justify-center gap-5 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full w-fit z-50 shadow-md transition-all duration-300"
+            className="fixed top-3 left-1/2 -translate-x-1/2 flex justify-center 
+                 gap-2 sm:gap-3 md:gap-5
+                 bg-white/10 backdrop-blur-md
+                 px-2 py-1 sm:px-4 sm:py-1.5 md:px-5 md:py-2
+                 rounded-full w-fit z-50 shadow-md
+                 text-xs sm:text-sm md:text-base
+                 transition-all duration-300"
             style={{ opacity }}
         >
-            <a href="/home" className="text-white font-medium px-4 py-2 rounded-full hover:bg-white/20 transition">Home</a>
-            <Link href="/about" className="text-white font-medium px-4 py-2 rounded-full hover:bg-black/20 transition">About</Link>
-            <a href="#" className="text-white font-medium px-4 py-2 rounded-full hover:bg-white/20 transition">News</a>
-            <a href="#contact" className="bg-white text-black font-medium px-4 py-2 rounded-full transition">Contact</a>
+            <Link
+                href="/home"
+                className={`${textClass} font-medium px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full ${hoverClass} transition`}
+            >
+                Home
+            </Link>
+            <Link
+                href="/about"
+                className={`${textClass} font-medium px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full ${hoverClass} transition`}
+            >
+                About
+            </Link>
+            <Link
+                href="/news"
+                className={`${textClass} font-medium px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full ${hoverClass} transition`}
+            >
+                News
+            </Link>
+            <Link
+                href="/home#contact"
+                className={`${contactClass} font-medium px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full transition`}
+            >
+                Contact
+            </Link>
         </nav>
-    )
+    );
 }
-
-

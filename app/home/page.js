@@ -1,7 +1,9 @@
+'use clients';
 import React from 'react'
 import HeroSection from '@/component/heroSection'
 import ContactSection from '@/component/contactSection'
 import InformationSection from '@/component/informationSection'
+import Ekstrakulikuler from '@/component/ekstrakulikuler'
 
 export default function Home() {
     return (
@@ -9,6 +11,11 @@ export default function Home() {
             <section id="home" className="overflow-x-hidden">
                 <HeroSection />
                 
+            </section>
+
+            <section id="eskul" className="overflow-x-hidden">
+                <Ekstrakulikuler />
+
             </section>
 
             <section id="information" className="overflow-x-hidden">

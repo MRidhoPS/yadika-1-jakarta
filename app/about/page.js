@@ -69,7 +69,7 @@ export default function About() {
                     >
                         <h2 className="text-xl md:text-3xl font-light text-gray-600">Kepala Sekolah</h2>
                         <p className="text-3xl sm:text-4xl font-bold text-indigo-800">Dra. Luky Mardiana</p>
-                        <p className="text-lg italic text-gray-700"> &quot;Pendidikan bukan hanya tentang ilmu pengetahuan, tetapi juga tentang membentuk karakter dan mempersiapkan generasi yang mampu menghadapi tantangan zaman dengan penuh percaya diri.&quot;</p>
+                        <p className="text-lg italic text-gray-700"> {"Pendidikan bukan hanya tentang ilmu pengetahuan, tetapi juga tentang membentuk karakter dan mempersiapkan generasi yang mampu menghadapi tantangan zaman dengan penuh percaya diri"}</p>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}

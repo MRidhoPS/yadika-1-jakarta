@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import newsData from '../data/news';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 
@@ -30,7 +31,10 @@ export default function News() {
             whileHover={{ scale: 1.05 }}
             className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
-            <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+            <Image
+            width={400}
+            height={400}
+            src={item.image} alt={item.title} className="w-full h-48 object-cover" />
             <div className="p-5">
               <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full">
                 {item.category}

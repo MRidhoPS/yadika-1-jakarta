@@ -53,7 +53,7 @@ export default function About() {
                         Yadika Story
                     </h2>
                     <p className="text-lg leading-relaxed text-gray-700">
-                        Yayasan Abdi Karya (Yadika) didirikan oleh dua tokoh masyarakat yakni Dr. Sutan Raja D.L. Sitorus dan Ny. L. Siagian, BSc, pada tanggal 14 Februari 1976. Maksud dan tujuan didirikannya YADIKA adalah untuk mencerdaskan kehidupan bangsa dan memajukan kesejahteraan umum dalam rangka ikut serta mewujudkan masyarakat Indonesia yang adil dan makmur, baik spiritual maupun material berdasarkan Pancasila dan UUD '45.
+                        Yayasan Abdi Karya (Yadika) didirikan oleh dua tokoh masyarakat yakni Dr. Sutan Raja D.L. Sitorus dan Ny. L. Siagian, BSc, pada tanggal 14 Februari 1976. Maksud dan tujuan didirikannya YADIKA adalah untuk mencerdaskan kehidupan bangsa dan memajukan kesejahteraan umum dalam rangka ikut serta mewujudkan masyarakat Indonesia yang adil dan makmur, baik spiritual maupun material berdasarkan Pancasila dan UUD45.
                     </p>
                 </motion.div>
             </div>
@@ -69,7 +69,7 @@ export default function About() {
                     >
                         <h2 className="text-xl md:text-3xl font-light text-gray-600">Kepala Sekolah</h2>
                         <p className="text-3xl sm:text-4xl font-bold text-indigo-800">Dra. Luky Mardiana</p>
-                        <p className="text-lg italic text-gray-700"> {"Pendidikan bukan hanya tentang ilmu pengetahuan, tetapi juga tentang membentuk karakter dan mempersiapkan generasi yang mampu menghadapi tantangan zaman dengan penuh percaya diri"}</p>
+                        <p className="text-lg italic text-gray-700">Pendidikan bukan hanya tentang ilmu pengetahuan, tetapi juga tentang membentuk karakter dan mempersiapkan generasi yang mampu menghadapi tantangan zaman dengan penuh percaya diri.</p>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}

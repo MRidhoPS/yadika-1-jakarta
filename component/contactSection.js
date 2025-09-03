@@ -11,9 +11,70 @@ export default function ContactSection() {
         city: "",
     });
 
+    const personalWhatsAppNumber = "6281378888032";
+
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setForm((prev) => ({ ...prev, [name]: value }));
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Fix: Use 'nama' instead of 'name' to match your form state
+        const { nama, email, phone, city } = form;
+
+        if (!nama || !email || !phone || !city) {
+            alert("Please fill out all required fields.");
+            return;
+        }
+
+        const messageText = `Hello! Saya ingin mendaftarkan anak saya ke sekolah SMA Yadika 1 Jakarta. Nama: ${nama}, Email: ${email}, Nomor Telephone: ${phone}, Kota: ${city}`;
+
+        // Try multiple WhatsApp URL formats
+        const whatsappURLs = [
+            `https://wa.me/${personalWhatsAppNumber}?text=${encodeURIComponent(messageText)}`,
+            `https://api.whatsapp.com/send?phone=${personalWhatsAppNumber}&text=${encodeURIComponent(messageText)}`,
+            `https://web.whatsapp.com/send?phone=${personalWhatsAppNumber}&text=${encodeURIComponent(messageText)}`
+        ];
+
+        // Try the first URL
+        let whatsappWindow = window.open(whatsappURLs[2], "_blank");
+
+        // If blocked, show options to user
+        if (!whatsappWindow || whatsappWindow.closed || typeof whatsappWindow.closed === 'undefined') {
+            const userChoice = confirm(
+                `WhatsApp could not be opened automatically. 
+                
+Click OK to try alternative method, or Cancel to see manual instructions.`
+            );
+
+            if (userChoice) {
+                // Try second URL
+                window.location.href = whatsappURLs[1];
+            } else {
+                // Show manual instructions
+                alert(`Please copy this message and send it manually to WhatsApp number: +${personalWhatsAppNumber}
+
+Message:
+${messageText}
+
+You can also try these links:
+1. ${whatsappURLs[0]}
+2. ${whatsappURLs[1]}`);
+            }
+        }
+
+        // Optional: Reset form after submission
+        setTimeout(() => {
+            setForm({
+                nama: "",
+                email: "",
+                phone: "",
+                city: "",
+            });
+        }, 1000);
+    }
 
     return (
         <section className="relative w-full min-h-[700px] py-16 px-4 md:px-12 bg-gradient-to-br from-white via-blue-50 to-purple-50 overflow-hidden">
@@ -71,7 +132,7 @@ export default function ContactSection() {
                         Membangun masa depan anak Anda dengan pendidikan yang unggul.
                     </p>
 
-                    <form className="flex flex-col gap-5 mt-6">
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-6">
                         <TextInput
                             name="nama"
                             placeholder="Nama lengkap"
@@ -102,6 +163,7 @@ export default function ContactSection() {
                         />
 
                         <motion.button
+                            type="submit"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="mt-2 w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-3 rounded-xl font-medium shadow-md hover:shadow-lg transition-all duration-300"

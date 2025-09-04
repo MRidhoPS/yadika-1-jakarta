@@ -1,19 +1,57 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useParams, useRouter } from 'next/navigation';
 import newsData from "@/app/data/news";
 import Image from "next/image";
+import { blogService } from "@/app/service/newsServices";
+import "react-quill-new/dist/quill.snow.css";
+import dynamic from 'next/dynamic';
+
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 export default function NewsDetail() {
-    const params = useParams();
     const router = useRouter();
-    const id = parseInt(params?.id, 10);
+    const params = useParams();
+    const { id } = params;
 
-    const news = newsData.find((item) => item.id === id);
+    const [blog, setBlog] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    if (!news) {
+    useEffect(() => {
+        if (id) {
+            fetchBlog();
+        }
+    }, [id]);
+
+    const fetchBlog = async () => {
+        try {
+            const blogData = await blogService.getBlogById(id);
+            if (blogData) {
+                setBlog(blogData);
+            } else {
+                router.push('/404');
+            }
+        } catch (error) {
+            console.error('Error fetching blog:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const formatDate = (date) => {
+        if (!date) return '';
+        return new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        }).format(date);
+    };
+
+    if (!blog) {
         return <p className="text-center mt-20 text-gray-500">Berita tidak ditemukan atau sedang dimuat...</p>;
     }
 
@@ -29,8 +67,8 @@ export default function NewsDetail() {
                 <Image
                     width={1600}
                     height={900}
-                    src={news.image}
-                    alt={news.title}
+                    src={blog.image}
+                    alt={blog.title}
                     className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
@@ -40,7 +78,7 @@ export default function NewsDetail() {
                         transition={{ duration: 0.8 }}
                         className="text-2xl sm:text-3xl md:text-5xl text-white font-bold drop-shadow-lg text-center px-4"
                     >
-                        {news.title}
+                        {blog.title}
                     </motion.h1>
                 </div>
             </motion.div>
@@ -57,8 +95,7 @@ export default function NewsDetail() {
                     <div className="absolute top-0 right-0 w-32 h-32 sm:w-40 sm:h-40 bg-gradient-to-tr from-purple-400 to-blue-300 rounded-full opacity-20 blur-2xl -z-10"></div>
                     <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-40 sm:h-40 bg-gradient-to-bl from-blue-400 to-purple-300 rounded-full opacity-20 blur-2xl -z-10"></div>
 
-                    <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed whitespace-pre-line">
-                        {news.excerpt}
+                    <p className="text-base sm:text-lg md:text-xl prose max-w-none ql-editor leading-relaxed whitespace-pre-line" dangerouslySetInnerHTML={{ __html: blog.description }}>
                     </p>
 
                     {/* Buttons */}

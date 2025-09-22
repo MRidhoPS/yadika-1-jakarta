@@ -3,7 +3,7 @@ import React from 'react'
 import HeroSection from '@/component/heroSection'
 import ContactSection from '@/component/contactSection'
 import InformationSection from '@/component/informationSection'
-import Ekstrakulikuler from '@/component/ekstrakulikuler'
+import EkstrakulikulerSection from '@/component/ekstrakulikulerSection'
 
 export default function Home() {
     return (
@@ -14,7 +14,7 @@ export default function Home() {
             </section>
 
             <section id="eskul" className="overflow-x-hidden">
-                <Ekstrakulikuler />
+                <EkstrakulikulerSection />
 
             </section>
 

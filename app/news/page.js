@@ -1,28 +1,28 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import Image from 'next/image';
-import { blogService } from '../service/newsServices';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { blogService } from "../service/newsServices";
 import "react-quill-new/dist/quill.snow.css";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 export default function News() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const categories = ['All', 'Event', 'Prestasi', 'Pengumuman'];
+  const categories = ["All", "Event", "Prestasi", "Pengumuman"];
 
   const formatDate = (date) => {
-    if (!date) return '';
-    return new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }).format(date);
+    if (!date) return "";
+    return new Intl.DateTimeFormat("id-ID", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(date));
   };
 
   useEffect(() => {
@@ -33,14 +33,14 @@ export default function News() {
     try {
       setLoading(true);
       let blogData;
-      if (selectedCategory && selectedCategory !== 'All') {
+      if (selectedCategory && selectedCategory !== "All") {
         blogData = await blogService.getBlogsByCategory(selectedCategory);
       } else {
         blogData = await blogService.getAllBlogs();
       }
       setBlogs(blogData);
     } catch (error) {
-      console.error('Error fetching blogs:', error);
+      console.error("Error fetching blogs:", error);
     } finally {
       setLoading(false);
     }
@@ -49,69 +49,118 @@ export default function News() {
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Hero Section */}
-      <div className="text-center py-20 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-b-3xl shadow-md">
+      <motion.div
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center py-20 bg-gradient-to-tr from-black via-gray-900 to-black text-white rounded-b-3xl shadow-md relative overflow-hidden"
+      >
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, delay: 0.2 }}
           className="text-4xl md:text-5xl font-bold tracking-wide"
         >
           Yadika 1 News
         </motion.h1>
-        <p className="mt-3 text-lg md:text-xl opacity-90">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="mt-3 text-lg md:text-xl opacity-90"
+        >
           Berita terbaru, prestasi, dan kegiatan seru untuk seluruh siswa
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
       {/* Category Filter */}
       <div className="container mx-auto px-6 mt-8">
-        <div className="flex gap-3 flex-wrap md:flex-nowrap md:justify-center overflow-x-auto pb-2">
-          {categories.map(category => (
-            <button
+        <motion.div
+          className="flex gap-3 flex-wrap md:flex-nowrap md:justify-center overflow-x-auto pb-2"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+            },
+          }}
+        >
+          {categories.map((category) => (
+            <motion.button
               key={category}
-              onClick={() => setSelectedCategory(category === 'All' ? '' : category)}
-              className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${(selectedCategory === category || (category === 'All' && selectedCategory === ''))
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+              onClick={() =>
+                setSelectedCategory(category === "All" ? "" : category)
+              }
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${selectedCategory === category ||
+                (category === "All" && selectedCategory === "")
+                ? "bg-gradient-to-r from-white-600 to-black-600 text-black shadow-lg"
+                : "bg-gradient-to-tr from-black via-gray-900 to-black text-gray-200 hover:opacity-90"
                 }`}
             >
               {category}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* News Grid */}
-      <div className="container mx-auto px-6 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.div
+        className="container mx-auto px-6 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: {
+            transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+          },
+        }}
+      >
         {loading ? (
-          <div className="col-span-full text-center text-gray-500">Loading...</div>
+          <div className="col-span-full text-center text-gray-500">
+            Loading...
+          </div>
         ) : blogs.length === 0 ? (
-          <div className="col-span-full text-center text-gray-500">Belum ada berita.</div>
+          <div className="col-span-full text-center text-gray-500">
+            Belum ada berita.
+          </div>
         ) : (
           blogs.map((item) => (
             <motion.div
               key={item.id}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
               whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.5 }}
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
             >
               <Image
                 width={400}
                 height={400}
-                src={item.image || '/placeholder.jpg'}
+                src={item.image || "/placeholder.jpg"}
                 alt={item.title}
                 className="w-full h-48 object-cover"
               />
               <div className="p-5">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full uppercase tracking-wide font-semibold">
+                  <span className="inline-block bg-gradient-to-r from-black via-gray-900 to-black text-white text-xs px-2 py-1 rounded-full uppercase tracking-wide font-semibold">
                     {item.category}
                   </span>
                   <span className="text-gray-500 text-sm">
                     {formatDate(item.createdAt)}
                   </span>
                 </div>
-                <h2 className="mt-3 text-xl font-semibold text-gray-800">{item.title}</h2>
-                <div className="text-gray-600 text-sm line-clamp-3"
+                <h2 className="mt-3 text-xl font-semibold text-gray-800">
+                  {item.title}
+                </h2>
+                <div
+                  className="text-gray-600 text-sm line-clamp-3"
                   dangerouslySetInnerHTML={{ __html: item.description }}
                 />
                 <Link
@@ -124,119 +173,7 @@ export default function News() {
             </motion.div>
           ))
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }
-
-
-// "use client";
-// import React, { useState, useEffect } from 'react';
-// import { motion } from 'framer-motion';
-// import Link from 'next/link';
-// import Image from 'next/image';
-// import { blogService } from '../service/newsServices';
-
-// export default function News() {
-//   const [blogs, setBlogs] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [selectedCategory, setSelectedCategory] = useState('');
-
-//   const categories = ['All', 'Event', 'Prestasi', 'Pengumuman'];
-
-//   useEffect(() => {
-//     fetchBlogs();
-//   }, [selectedCategory]);
-
-//   const fetchBlogs = async () => {
-//     try {
-//       setLoading(true);
-//       let blogData;
-//       if (selectedCategory && selectedCategory !== 'All') {
-//         blogData = await blogService.getBlogsByCategory(selectedCategory);
-//       } else {
-//         blogData = await blogService.getAllBlogs();
-//       }
-//       setBlogs(blogData);
-//     } catch (error) {
-//       console.error('Error fetching blogs:', error);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="w-full min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-//       {/* Hero Section */}
-//       <div className="text-center py-30 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-b-3xl shadow-md">
-//         <motion.h1
-//           initial={{ opacity: 0, y: -20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.8 }}
-//           className="text-4xl md:text-5xl font-bold tracking-wide"
-//         >
-//           Yadika 1 News
-//         </motion.h1>
-//         <p className="mt-3 text-lg md:text-xl opacity-90">
-//           Berita terbaru, prestasi, dan kegiatan seru untuk seluruh siswa
-//         </p>
-//       </div>
-
-//       {/* News Grid */}
-//       <div className="container mx-auto px-6 py-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-
-//         <div className="flex flex-wrap gap-2">
-//           {categories.map(category => (
-//             <button
-//               key={category}
-//               onClick={() => setSelectedCategory(category === 'All' ? '' : category)}
-//               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${(selectedCategory === category || (category === 'All' && selectedCategory === ''))
-//                 ? 'bg-blue-600 text-white'
-//                 : 'bg-white text-gray-700 hover:bg-gray-100'
-//                 }`}
-//             >
-//               {category}
-//             </button>
-//           ))}
-//         </div>
-        
-//         {loading ? (
-//           <div className="col-span-full text-center text-gray-500">Loading...</div>
-//         ) : blogs.length === 0 ? (
-//           <div className="col-span-full text-center text-gray-500">Belum ada berita.</div>
-//         ) : (
-//           blogs.map((item) => (
-//             <motion.div
-//               key={item.id}
-//               whileHover={{ scale: 1.05 }}
-//               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
-//             >
-//               <Image
-//                 width={400}
-//                 height={400}
-//                 src={item.image || '/placeholder.jpg'}
-//                 alt={item.title}
-//                 className="w-full h-48 object-cover"
-//               />
-//               <div className="p-5">
-//                 <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full">
-//                   {item.category || 'Umum'}
-//                 </span>
-//                 <h2 className="mt-3 text-xl font-semibold text-gray-800">{item.title}</h2>
-//                 <p className="mt-2 text-gray-600 text-sm">
-//                   {item.excerpt || (item.description?.replace(/<[^>]+>/g, '').slice(0, 100) + '...')}
-//                 </p>
-//                 <Link
-//                   href={`/news/${item.id}`}
-//                   className="mt-4 inline-block text-blue-600 font-medium hover:underline"
-//                 >
-//                   Read More →
-//                 </Link>
-//               </div>
-//             </motion.div>
-//           ))
-//         )}
-//       </div>
-//     </div>
-//   );
-// }

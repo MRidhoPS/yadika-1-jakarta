@@ -104,7 +104,7 @@ export default function NewsDetail() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => router.back()}
-                            className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-xl shadow-md hover:shadow-xl transition"
+                            className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r  from-black via-gray-900 to-black text-white font-medium rounded-xl shadow-md hover:shadow-xl transition"
                         >
                             ← Kembali ke Berita
                         </motion.button>
@@ -112,7 +112,7 @@ export default function NewsDetail() {
                         <motion.button
                             whileHover={{ scale: 1.05, rotate: 1 }}
                             whileTap={{ scale: 0.95, rotate: -1 }}
-                            className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-xl shadow-md hover:shadow-xl transition"
+                            className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r  from-black via-gray-900 to-black text-white font-medium rounded-xl shadow-md hover:shadow-xl transition"
                         >
                             Bagikan 📢
                         </motion.button>

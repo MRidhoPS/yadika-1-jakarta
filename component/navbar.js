@@ -8,6 +8,7 @@ export default function Navbar() {
     const [opacity, setOpacity] = useState(1);
     const pathname = usePathname();
     const isHome = pathname === "/" || pathname === "/home";
+    const isEskulDetail = pathname.startsWith("/ekstrakulikuler/");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,9 +27,19 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const textClass = isHome ? "text-white" : "text-white";
-    const hoverClass = isHome ? "hover:bg-white/20" : "hover:bg-black/10";
-    const contactClass = isHome ? "bg-white text-black" : "bg-black text-white";
+    let textClass = "text-white";
+    let hoverClass = "hover:bg-white/20";
+    let contactClass = "bg-white text-black";
+
+    if (isEskulDetail) {
+        textClass = "text-black";
+        hoverClass = "hover:bg-black/10";
+        contactClass = "bg-black text-white";
+    } else if (!isHome) {
+        textClass = "text-white";
+        hoverClass = "hover:bg-black/10";
+        contactClass = "bg-black text-white";
+    }
 
     return (
         <nav

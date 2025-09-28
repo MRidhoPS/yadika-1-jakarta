@@ -6,7 +6,6 @@ import Link from "next/link";
 
 export default function EkstrakulikulerCard() {
 
-
     return (
         <div className="flex flex-col gap-20 md:gap-28 py-10 md:py-16">
             {eskul.map((step, index) => {

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.javanice-electric.com/sitemap.xml
+Sitemap: https://yadika-1-jakarta.vercel.app/sitemap.xml

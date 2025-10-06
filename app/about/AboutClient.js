@@ -1,21 +1,53 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function AboutClient({ keunggulan }) {
+
+
+    const images = [
+        "/gedung1.jpg",
+        "/gedung2.jpg",
+        "/gedung3.jpg",
+    ];
+
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setIndex((prev) => (prev + 1) % images.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [images.length]);
+
     return (
         <>
             {/* Hero Section */}
-            <section className="relative w-full h-[60vh]">
-                <Image
-                    src="https://images.pexels.com/photos/29885889/pexels-photo-29885889.jpeg"
-                    alt="Gedung SMA Yadika 1 Jakarta Barat"
-                    fill
-                    className="object-cover"
-                    priority
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-center px-4">
+            <section className="relative w-full h-[60vh] overflow-hidden">
+                {/* Background carousel */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={images[index]}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1.2, ease: "easeInOut" }}
+                        className="absolute inset-0"
+                    >
+                        <Image
+                            src={images[index]}
+                            alt={`Gedung ${index + 1}`}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    </motion.div>
+                </AnimatePresence>
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-4">
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}

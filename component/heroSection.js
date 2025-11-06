@@ -7,20 +7,17 @@ import { useEffect, useState } from "react";
 
 export default function HeroSection() {
 
-    const [paddingX, setPaddingX] = useState(10); // default px-10
+    const [paddingX, setPaddingX] = useState(10); 
 
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
             const maxScroll = 300;
 
-            // Cek lebar layar
             const screenWidth = window.innerWidth;
 
-            // padding min beda antara mobile dan desktop
-            const minPadding = screenWidth < 640 ? 20 : 0; // misal mobile jangan sampai 0, minimal 20px
+            const minPadding = screenWidth < 640 ? 20 : 0;
 
-            // Hitung padding
             const newPadding = Math.max(
                 minPadding,
                 40 - (scrollY / maxScroll) * (40 - minPadding)
@@ -38,11 +35,10 @@ export default function HeroSection() {
             <div className="w-full h-[660px] mb-10 max-w-screen py-5"
                 style={{ paddingLeft: `${paddingX}px`, paddingRight: `${paddingX}px` }}
             >
-                {/* Wrapper gambar + overlay */}
                 <div className="relative w-full h-full overflow-hidden">
                     <Image
-                        src="/hero.png"
-                        alt="Yadika 1 Jakarta"
+                        src="/gedung1.jpg"
+                        alt="SMA Yadika 1 Jakarta"
                         width={1920}
                         height={1080}
                         className="w-full h-full object-cover rounded-3xl"

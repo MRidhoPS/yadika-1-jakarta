@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
         openGraph: {
             title: detail.title,
             description: detail.description,
-            url: `https://yadika-1-jakarta.vercel.app/eskul/${detail.id}`,
+            url: `https://www.smayadika1jakarta.com/eskul/${detail.id}`,
             siteName: "SMA Yadika 1 Jakarta Barat",
             images: Object.values(detail.image).map((img) => ({
                 url: img,

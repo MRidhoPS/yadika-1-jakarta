@@ -12,7 +12,7 @@ export const metadata = {
         title: "SMA Yadika 1 Jakarta Barat",
         description:
             "Sekolah unggulan di Jakarta Barat dengan program inovatif dan tenaga pendidik profesional.",
-        url: "https://yadika-1-jakarta.vercel.app",
+        url: "https://www.smayadika1jakarta.com/",
         images: ["/kepsek.jpg"],
     },
 };

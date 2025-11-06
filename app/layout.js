@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://yadika-1-jakarta.vercel.app/"),
+  metadataBase: new URL("https://www.smayadika1jakarta.com/"),
   title: "SMA YADIKA 1 JAKARTA",
   description:
     "SMA YADIKA 1 JAKARTA — Sekolah Menengah Atas unggulan di Jakarta. Informasi resmi tentang kurikulum, PPDB (pendaftaran), prestasi siswa, ekstrakurikuler, fasilitas, dan pengumuman.",
@@ -38,7 +38,7 @@ export const metadata = {
         alt: "SMA YADIKA 1 JAKARTA",
       },
     ],
-    url: "https://yadika-1-jakarta.vercel.app//",
+    url: "https://www.smayadika1jakarta.com/",
     siteName: "SMA YADIKA 1 JAKARATA",
     locale: "id_ID",
     type: "website",

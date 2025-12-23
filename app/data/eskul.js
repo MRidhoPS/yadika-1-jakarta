@@ -16,7 +16,7 @@ const eskul = [
         description: "Tari Tartra menekankan ekspresi gerak modern yang dipadukan dengan nilai seni tradisional. Anggotanya dilatih untuk percaya diri tampil di depan umum dengan koreografi kreatif.",
         alt: 'Tartra SMA Yadika 1 Jakarta',
         image: {
-            'image1': '/tartra1.jpg',
+            'image1': '/TATRA.jpg',
             'image2': '/tartra2.jpg',
             'image3': '/tartra1.jpg',
         }
@@ -27,8 +27,8 @@ const eskul = [
         description: "Karate mengajarkan disiplin, ketangkasan, dan bela diri. Selain fisik yang kuat, siswa juga dilatih untuk memiliki mental yang tangguh dan sportivitas tinggi.",
         alt: 'Karate SMA Yadika 1 Jakarta',
         image: {
-            'image1': '/karate1.jpg',
-            'image2': '/karate2.jpg',
+            'image1': '/KARATE.jpg',
+            'image2': '/karate1.jpg',
             'image3': '/karate2.jpg',
         }
     },
@@ -41,6 +41,7 @@ const eskul = [
             'image1': '/paskib1.jpg',
             'image2': '/paskib2.jpg',
             'image3': '/paskib3.jpg',
+            'image4': '/PASKIB.jpg',
         }
     },
     {
@@ -52,6 +53,7 @@ const eskul = [
             'image1': '/basket1.jpg',
             'image2': '/basket2.jpg',
             'image3': '/basket3.jpg',
+            'image4': '/yadika cup basket.jpg'
         }
     },
     {
@@ -63,6 +65,7 @@ const eskul = [
             'image1': '/futsal1.jpg',
             'image2': '/futsal2.jpg',
             'image3': '/futsal3.jpg',
+            'image4': '/FUTSAL.jpg',
         }
     },
     {
@@ -74,6 +77,7 @@ const eskul = [
             'image1': '/md1.jpg',
             'image2': '/md2.jpg',
             'image3': '/md3.jpg',
+            'image4': '/MODERN DANCE.jpg',
         }
     },
     {
@@ -85,6 +89,7 @@ const eskul = [
             'image1': '/kir1.jpg',
             'image2': '/kir2.jpg',
             'image3': '/kir3.jpg',
+            'image4': '/KIR.jpg'
         }
     },
 ];

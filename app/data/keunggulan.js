@@ -18,6 +18,11 @@ const keunggulan = [
         'id': 4,
         'title': 'Lingkungan',
         'description': 'Lokasi aman, nyaman dan jauh dari kebisingan sehingga murid tetap bisa konsentransi dalam belajar.'
+    },
+    {
+        'id': 5,
+        'title': 'Gedung',
+        'description': 'Memiliki 4 lantai, full AC, toilet di setiap lantai, laboratorium lengkap (bahasa, komputer dan IPA), serta perpustakaan dan ruang aktivitas siswa yang nyaman.'
     }
 
 ]

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://yadika-1-jakarta.vercel.app/sitemap.xml
+Sitemap: https://www.smayadika1jakarta.com/sitemap.xml

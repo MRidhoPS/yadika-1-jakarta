@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/component/navbar";
 import Footer from "@/component/footer";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,34 +14,66 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://www.smayadika1jakarta.com";
+const SITE_NAME = "SMA YADIKA 1 JAKARTA";
+
 export const metadata = {
-  metadataBase: new URL("https://www.smayadika1jakarta.com/"),
-  title: "SMA YADIKA 1 JAKARTA",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} - Sekolah Menengah Atas Unggulan di Jakarta`,
+    template: `%s | ${SITE_NAME}`,
+  },
   description:
-    "SMA YADIKA 1 JAKARTA — Sekolah Menengah Atas unggulan di Jakarta. Informasi resmi tentang kurikulum, PPDB (pendaftaran), prestasi siswa, ekstrakurikuler, fasilitas, dan pengumuman.",
-  authors: [{ name: "SMA YADIKA 1 JAKARTA" }],
-  robots: "index, follow",
+    "SMA YADIKA 1 JAKARTA adalah Sekolah Menengah Atas swasta unggulan di Jakarta. Temukan informasi resmi seputar kurikulum, jadwal PPDB (pendaftaran siswa baru), prestasi akademik & non-akademik, ekstrakurikuler, fasilitas belajar, dan pengumuman terbaru.",
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
     apple: "/logo.png",
   },
+  manifest: "/manifest.json",
+  alternates: {
+    canonical: SITE_URL,
+    languages: {
+      "id-ID": SITE_URL,
+    },
+  },
   openGraph: {
-    title: "SMA YADIKA 1 JAKARTA - Sekolah Menengah Atas di Jakarta",
+    title: `${SITE_NAME} - Sekolah Menengah Atas di Jakarta`,
     description:
-      "SMA YADIKA 1 JAKARTA — Informasi resmi: Kurikulum, PPDB, prestasi, ekstrakurikuler, fasilitas, dan kegiatan siswa.",
+      "Informasi resmi SMA YADIKA 1 JAKARTA: kurikulum, PPDB, prestasi siswa, ekstrakurikuler, fasilitas, dan kegiatan sekolah terbaru.",
     images: [
       {
         url: "/logo.png",
         width: 800,
         height: 600,
-        alt: "SMA YADIKA 1 JAKARTA",
+        alt: `Logo ${SITE_NAME}`,
       },
     ],
-    url: "https://www.smayadika1jakarta.com/",
-    siteName: "SMA YADIKA 1 JAKARATA",
+    url: SITE_URL,
+    siteName: SITE_NAME,
     locale: "id_ID",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description:
+      "Informasi resmi SMA YADIKA 1 JAKARTA: kurikulum, PPDB, prestasi siswa, ekstrakurikuler, dan fasilitas sekolah.",
+    images: ["/logo.png"],
   },
   keywords: [
     "SMA Yadika 1 Jakarta",
@@ -49,7 +81,45 @@ export const metadata = {
     "Sekolah Menengah Atas Jakarta",
     "PPDB SMA Jakarta",
     "Sekolah swasta Jakarta",
-    "SMA Swasta Terbaik",
+    "SMA Swasta Terbaik Jakarta",
+    "Pendaftaran siswa baru Jakarta",
+  ],
+  verification: {
+    google: "4Hve-GuRIBqZLbg3Jjm99kKGV3jkgqV1mIWS6FPx0b0",
+  },
+  other: {
+    "geo.region": "ID-JK",
+    "geo.placename": "Jakarta",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "School",
+  name: SITE_NAME,
+  alternateName: "SMA Yadika 1 Jakarta",
+  description: metadata.description,
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  image: `${SITE_URL}/logo.png`,
+  telephone: "+6281378888032",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Jakarta",
+    addressRegion: "DKI Jakarta",
+    addressCountry: "ID",
+  },
+  // Ganti dengan akun resmi sekolah agar Google mengaitkan entitas dengan benar
+  sameAs: [
+    // "https://www.instagram.com/smayadika1jakarta",
+    // "https://www.facebook.com/smayadika1jakarta",
+    // "https://www.youtube.com/@smayadika1jakarta",
   ],
 };
 
@@ -57,46 +127,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id">
       <head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <meta name="keywords" content={metadata.keywords} />
-        <meta name="author" content={metadata.authors[0].name} />
-        <meta property="og:title" content={metadata.openGraph.title} />
-        <meta property="og:description" content={metadata.openGraph.description} />
-        <meta property="og:type" content={metadata.openGraph.type} />
-        <meta property="og:site_name" content={metadata.openGraph.siteName} />
-        <meta property="og:url" content={metadata.openGraph.url} />
-        <meta property="og:image" content={metadata.openGraph.images[0].url} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="google-site-verification" content="4Hve-GuRIBqZLbg3Jjm99kKGV3jkgqV1mIWS6FPx0b0" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="SMA YADIKA 1 JAKARTA" />
-        <meta name="twitter:description" content="Mau olahraga tapi malas yang ribet? Coba kelas Zumba & aerobik Jakarta bareng instruktur berpengalaman. Seru, sehat, cocok usia 20–45 tahun!" />
-        <meta name="twitter:image" content="/logo.png" />
-        <meta name="geo.region" content="ID-JK" />
-        <meta name="geo.placename" content="Jakarta" />
-
-
-        <link rel="icon" href={metadata.icons.icon} />
-        <link rel="shortcut icon" href={metadata.icons.shortcut} />
-        <link rel="apple-touch-icon" href={metadata.icons.apple} />
-        <link rel="canonical" href={metadata.openGraph.url} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ContactPoint",
-            "name": "SMA YADIKA 1 JAKARTA",
-            "description": metadata.description,
-            "image": metadata.openGraph.images[0].url,
-            "url": metadata.openGraph.url,
-            "telephone": "+6281378888032",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Jakarta",
-              "addressCountry": "ID",
-            },
-          })}
-        </script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

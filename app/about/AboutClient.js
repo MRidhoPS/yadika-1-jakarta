@@ -114,7 +114,7 @@ export default function AboutClient({ keunggulan }) {
                             Sambutan Kepala Sekolah
                         </h2>
                         <p className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-indigo-700 to-purple-700 bg-clip-text text-transparent">
-                            Dra. Luky Mardiana
+                            Euis Liawati, S.Pd, M.M, M.I.Kom
                         </p>
 
                         <p className="italic text-gray-600">
@@ -122,7 +122,7 @@ export default function AboutClient({ keunggulan }) {
                         </p>
 
                         <p className="text-lg text-gray-700 leading-relaxed">
-                            Saya, <strong>Ibu Luky Mardiana</strong>, Kepala{" "}
+                            Saya, <strong>Ibu Euis Liawati</strong>, Kepala{" "}
                             <strong>SMA Yadika 1 Durikepa, Jakarta Barat</strong>, dengan
                             bangga memperkenalkan sekolah kami sebagai{" "}
                             <span className="font-semibold text-indigo-700">Sekolah ASIK</span>{" "}
@@ -162,7 +162,7 @@ export default function AboutClient({ keunggulan }) {
                     >
                         <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px]">
                             <Image
-                                src="/kepsek.jpg"
+                                src="/new_kepsek.jpeg"
                                 alt="Foto Kepala Sekolah SMA Yadika 1 Jakarta Barat - Dra. Luky Mardiana"
                                 fill
                                 className="rounded-3xl shadow-2xl object-cover border-4 border-white"

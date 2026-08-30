@@ -22,10 +22,10 @@ export const metadata = {
         siteName: "SMA Yadika 1 Jakarta Barat",
         images: [
             {
-                url: "/kepsek.jpg",
+                url: "/new_kepsek.jpeg",
                 width: 1200,
                 height: 630,
-                alt: "Foto Kepala Sekolah SMA Yadika 1 Jakarta Barat - Dra. Luky Mardiana",
+                alt: "Foto Kepala Sekolah SMA Yadika 1 Jakarta Barat - Euis Liawati, S.Pd, M.M, M.I.Kom",
             },
         ],
         locale: "id_ID",

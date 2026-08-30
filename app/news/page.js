@@ -109,7 +109,7 @@ export default function News() {
       </div>
 
       {/* News Grid */}
-      <motion.div
+      <div
         className="container mx-auto px-6 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
         initial="hidden"
         animate="visible"
@@ -130,7 +130,7 @@ export default function News() {
           </div>
         ) : (
           blogs.map((item) => (
-            <motion.div
+            <div
               key={item.id}
               variants={{
                 hidden: { opacity: 0, y: 30 },
@@ -170,10 +170,10 @@ export default function News() {
                   Read More →
                 </Link>
               </div>
-            </motion.div>
+            </div>
           ))
         )}
-      </motion.div>
+      </div>
     </div>
   );
 }

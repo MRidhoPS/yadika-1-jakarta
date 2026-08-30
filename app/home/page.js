@@ -110,9 +110,9 @@ export default function Home() {
                 <EkstrakulikulerSection />
             </section>
 
-            <section id="information" className="overflow-x-hidden">
+            {/* <section id="information" className="overflow-x-hidden">
                 <InformationSection />
-            </section>
+            </section> */}
 
             <section id="contact" className="overflow-x-hidden">
                 <ContactSection />

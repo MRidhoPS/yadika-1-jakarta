@@ -18,7 +18,7 @@ export const metadata = {
         title: "Tentang SMA Yadika 1 Jakarta Barat",
         description:
             "Sekolah unggulan di Jakarta Barat dengan program inovatif, tenaga pendidik profesional, dan prestasi membanggakan.",
-        url: "https://www.smayadika1jakarta.com/about",
+        url: "https://www.smayadika1jakarta.sch.id/about",
         siteName: "SMA Yadika 1 Jakarta Barat",
         images: [
             {
@@ -46,9 +46,9 @@ export default function AboutPage() {
                         "@type": "EducationalOrganization",
                         name: "SMA Yadika 1 Jakarta Barat",
                         alternateName: "Sekolah ASIK Yadika 1",
-                        url: "https://www.smayadika1jakarta.com/",
-                        logo: "https://www.smayadika1jakarta.com/logo.png",
-                        image: "https://www.smayadika1jakarta.com/kepsek.jpg",
+                        url: "https://www.smayadika1jakarta.sch.id/",
+                        logo: "https://www.smayadika1jakarta.sch.id/logo.png",
+                        image: "https://www.smayadika1jakarta.sch.id/kepsek.jpg",
                         description:
                             "SMA Yadika 1 Jakarta Barat adalah sekolah unggulan di bawah Yayasan Abdi Karya (Yadika) dengan program English One dan Gramedia Academy, berkomitmen mencetak generasi berprestasi.",
                         foundingDate: "1976-02-14",

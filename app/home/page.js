@@ -4,7 +4,7 @@ import ContactSection from "@/component/contactSection";
 import InformationSection from "@/component/informationSection";
 import EkstrakulikulerSection from "@/component/ekstrakulikulerSection";
 
-const SITE_URL = "https://www.smayadika1jakarta.com";
+const SITE_URL = "https://www.smayadika1jakarta.sch.id";
 
 export const metadata = {
     // "absolute" dipakai supaya title INI TIDAK digabung dengan template

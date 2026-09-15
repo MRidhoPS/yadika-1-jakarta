@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://www.smayadika1jakarta.com";
+const SITE_URL = "https://www.smayadika1jakarta.sch.id";
 const SITE_NAME = "SMA YADIKA 1 JAKARTA";
 
 export const metadata = {
